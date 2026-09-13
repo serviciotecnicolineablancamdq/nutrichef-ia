@@ -131,11 +131,13 @@
                 vistaB2B.classList.add('hidden');
                 btnB2B.innerHTML = '<i class="fa-solid fa-briefcase mr-1"></i> Modo B2B';
                 btnB2B.className = 'text-xs bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded-full font-medium transition hover:bg-amber-500/20';
+                alert('Cambiado a Modo Hogar');
             } else {
                 vistaHogar.classList.add('hidden');
                 vistaB2B.classList.remove('hidden');
                 btnB2B.innerHTML = '<i class="fa-solid fa-house mr-1"></i> Modo Hogar';
                 btnB2B.className = 'text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full font-medium transition hover:bg-emerald-500/20';
+                alert('Cambiado a Modo B2B (FoodService)');
             }
         }
     </script>
