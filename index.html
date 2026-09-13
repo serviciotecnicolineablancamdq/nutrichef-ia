@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NutriChef IA - Tu Despensa Inteligente</title>
+    <title>NutriChef IA - Tu Despensa Inteligente & B2B</title>
     <!-- Tailwind CSS para un diseño moderno y responsivo -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -19,73 +19,123 @@
                 </div>
                 <div>
                     <h1 class="font-bold text-lg leading-tight">NutriChef IA</h1>
-                    <p class="text-xs text-slate-400">Control Inteligente</p>
+                    <p class="text-xs text-slate-400">Hogar & FoodService B2B</p>
                 </div>
             </div>
-            <span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full font-medium">
-                GitHub Ready
-            </span>
+            <button onclick="alternarModoB2B()" id="b2b-btn" class="text-xs bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded-full font-medium transition hover:bg-amber-500/20">
+                <i class="fa-solid fa-briefcase mr-1"></i> Modo B2B
+            </button>
         </div>
     </header>
 
     <!-- Contenido Principal -->
     <main class="flex-1 max-w-md w-full mx-auto p-4 space-y-6">
         
-        <!-- Tarjetas de Resumen -->
-        <div class="grid grid-cols-3 gap-3">
-            <div class="bg-slate-900 border border-slate-800 p-3 rounded-2xl text-center">
-                <span class="text-xs text-slate-400 block mb-1">Total</span>
-                <span id="count-total" class="text-xl font-bold text-slate-200">0</span>
-            </div>
-            <div class="bg-slate-900 border border-slate-800 p-3 rounded-2xl text-center">
-                <span class="text-xs text-amber-400 block mb-1">Por vencer</span>
-                <span id="count-warning" class="text-xl font-bold text-amber-400">0</span>
-            </div>
-            <div class="bg-slate-900 border border-slate-800 p-3 rounded-2xl text-center">
-                <span class="text-xs text-rose-400 block mb-1">Vencidos</span>
-                <span id="count-expired" class="text-xl font-bold text-rose-400">0</span>
-            </div>
-        </div>
-
-        <!-- Acciones Principales -->
-        <div class="space-y-3">
-            <button onclick="alert('Próximamente: Escáner de tickets con IA')" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-slate-950 font-semibold py-3.5 px-4 rounded-2xl shadow-lg shadow-emerald-950/50 flex items-center justify-center space-x-2 active:scale-[0.98] transition">
-                <i class="fa-solid fa-camera"></i>
-                <span>Escanear Ticket de Compra</span>
-            </button>
-            <button onclick="agregarAlimentoModal()" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-medium py-3 px-4 rounded-2xl flex items-center justify-center space-x-2 transition">
-                <i class="fa-solid fa-plus text-emerald-400"></i>
-                <span>Agregar alimento manual</span>
-            </button>
-        </div>
-
-        <!-- Listado de Despensa -->
-        <div class="space-y-3">
-            <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Mi Despensa</h2>
-            <div id="pantry-list" class="space-y-2">
-                <!-- Estado Vacío -->
-                <div class="text-center py-12 px-4 bg-slate-900/50 border border-slate-900 rounded-3xl">
-                    <div class="text-slate-600 text-4xl mb-3">
-                        <i class="fa-solid fa-box-open"></i>
-                    </div>
-                    <p class="text-slate-300 font-medium">Tu despensa está vacía</p>
-                    <p class="text-xs text-slate-500 mt-1">Agrega alimentos o escanea un ticket para empezar.</p>
+        <!-- Vista Hogar (Por defecto) -->
+        <div id="vista-hogar" class="space-y-6">
+            <!-- Índice Nutricional -->
+            <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl space-y-3">
+                <div class="flex justify-between items-center text-xs text-slate-400">
+                    <span class="font-semibold text-slate-200"><i class="fa-solid fa-chart-pie text-emerald-400 mr-1"></i> Índice Nutricional</span>
+                    <span>70% Equilibrada</span>
                 </div>
+                <div class="grid grid-cols-2 gap-2 text-center">
+                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-800">
+                        <span class="text-[10px] text-emerald-400 block">Frescos / Proteínas</span>
+                        <span class="text-sm font-bold text-slate-200">70%</span>
+                    </div>
+                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-800">
+                        <span class="text-[10px] text-amber-400 block">Procesados</span>
+                        <span class="text-sm font-bold text-slate-200">30%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acciones Principales -->
+            <div class="space-y-3">
+                <button onclick="alert('Iniciando escaneo con IA... (Cámara lista)')" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-slate-950 font-semibold py-3.5 px-4 rounded-2xl shadow-lg shadow-emerald-950/50 flex items-center justify-center space-x-2 active:scale-[0.98] transition">
+                    <i class="fa-solid fa-camera"></i>
+                    <span>Escanear Ticket / Foto</span>
+                </button>
+            </div>
+
+            <!-- Listado de Despensa -->
+            <div class="space-y-3">
+                <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Mi Despensa</h2>
+                <div class="space-y-2">
+                    <div class="bg-slate-900 border border-slate-800 p-3 rounded-2xl flex justify-between items-center">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xl">🥑</span>
+                            <div>
+                                <p class="text-sm font-medium text-slate-200">Aguacates / Paltas</p>
+                                <p class="text-xs text-amber-400">Vence: Mañana</p>
+                            </div>
+                        </div>
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vista B2B / FoodService (Oculta inicialmente) -->
+        <div id="vista-b2b" class="space-y-6 hidden">
+            <div class="bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/30 p-4 rounded-2xl space-y-2">
+                <div class="flex items-center space-x-2 text-amber-400">
+                    <i class="fa-solid fa-store text-lg"></i>
+                    <h3 class="font-bold text-sm">NutriChef FoodService & Corporate</h3>
+                </div>
+                <p class="text-xs text-slate-300">Optimización de stock masivo para bufés, caterings y comedores corporativos.</p>
+            </div>
+
+            <div class="space-y-3">
+                <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Acciones Comerciales</h2>
+                <button onclick="alert('Generando sugerencia de Menú Ejecutivo con stock sobrante...')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-medium py-3 px-4 rounded-2xl flex items-center justify-center space-x-2 transition text-left">
+                    <i class="fa-solid fa-utensils text-amber-400"></i>
+                    <span>Sugerir "Plato del Día" por Vencimiento</span>
+                </button>
+                <button onclick="alert('Escaneando factura de proveedor al por mayor...')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-medium py-3 px-4 rounded-2xl flex items-center justify-center space-x-2 transition text-left">
+                    <i class="fa-solid fa-file-invoice-dollar text-emerald-400"></i>
+                    <span>Escanear Factura Mayorista</span>
+                </button>
             </div>
         </div>
 
     </main>
 
-    <!-- Pie de página / Navegación móvil simulada -->
-    <footer class="bg-slate-900 border-t border-slate-800 py-3 text-center text-xs text-slate-500">
-        NutriChef IA &copy; 2026 - Version Base GitHub
+    <!-- Navegación Inferior -->
+    <footer class="bg-slate-900 border-t border-slate-800 p-3 sticky bottom-0 z-50">
+        <div class="max-w-md mx-auto flex justify-around text-xs text-slate-400">
+            <button class="flex flex-col items-center text-emerald-400 font-medium">
+                <i class="fa-solid fa-house text-base mb-1"></i>
+                <span>Despensa</span>
+            </button>
+            <button class="flex flex-col items-center hover:text-slate-200 transition">
+                <i class="fa-solid fa-utensils text-base mb-1"></i>
+                <span>Recetas</span>
+            </button>
+            <button class="flex flex-col items-center hover:text-slate-200 transition">
+                <i class="fa-solid fa-cart-shopping text-base mb-1"></i>
+                <span>Compras</span>
+            </button>
+        </div>
     </footer>
 
     <script>
-        function agregarAlimentoModal() {
-            const nombre = prompt("Nombre del alimento:");
-            if (nombre) {
-                alert(`¡Alimento "${nombre}" registrado con éxito en tu base local!`);
+        function alternarModoB2B() {
+            const vistaHogar = document.getElementById('vista-hogar');
+            const vistaB2B = document.getElementById('vista-b2b');
+            const btnB2B = document.getElementById('b2b-btn');
+
+            if (vistaHogar.classList.contains('hidden')) {
+                vistaHogar.classList.remove('hidden');
+                vistaB2B.classList.add('hidden');
+                btnB2B.innerHTML = '<i class="fa-solid fa-briefcase mr-1"></i> Modo B2B';
+                btnB2B.className = 'text-xs bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded-full font-medium transition hover:bg-amber-500/20';
+            } else {
+                vistaHogar.classList.add('hidden');
+                vistaB2B.classList.remove('hidden');
+                btnB2B.innerHTML = '<i class="fa-solid fa-house mr-1"></i> Modo Hogar';
+                btnB2B.className = 'text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full font-medium transition hover:bg-emerald-500/20';
             }
         }
     </script>
