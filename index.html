@@ -3,143 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NutriChef IA - Tu Despensa Inteligente & B2B</title>
-    <!-- Tailwind CSS para un diseño moderno y responsivo -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
-
-    <!-- Encabezado -->
-    <header class="bg-slate-900 border-b border-slate-800 p-4 sticky top-0 z-50">
-        <div class="max-w-md mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="bg-emerald-500 text-slate-950 p-2 rounded-xl font-bold">
-                    <i class="fa-solid fa-utensils"></i>
-                </div>
-                <div>
-                    <h1 class="font-bold text-lg leading-tight">NutriChef IA</h1>
-                    <p class="text-xs text-slate-400">Hogar & FoodService B2B</p>
-                </div>
-            </div>
-            <button onclick="alternarModoB2B()" id="b2b-btn" class="text-xs bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded-full font-medium transition hover:bg-amber-500/20">
-                <i class="fa-solid fa-briefcase mr-1"></i> Modo B2B
-            </button>
-        </div>
-    </header>
-
-    <!-- Contenido Principal -->
-    <main class="flex-1 max-w-md w-full mx-auto p-4 space-y-6">
-        
-        <!-- Vista Hogar (Por defecto) -->
-        <div id="vista-hogar" class="space-y-6">
-            <!-- Índice Nutricional -->
-            <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl space-y-3">
-                <div class="flex justify-between items-center text-xs text-slate-400">
-                    <span class="font-semibold text-slate-200"><i class="fa-solid fa-chart-pie text-emerald-400 mr-1"></i> Índice Nutricional</span>
-                    <span>70% Equilibrada</span>
-                </div>
-                <div class="grid grid-cols-2 gap-2 text-center">
-                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-800">
-                        <span class="text-[10px] text-emerald-400 block">Frescos / Proteínas</span>
-                        <span class="text-sm font-bold text-slate-200">70%</span>
-                    </div>
-                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-800">
-                        <span class="text-[10px] text-amber-400 block">Procesados</span>
-                        <span class="text-sm font-bold text-slate-200">30%</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Acciones Principales -->
-            <div class="space-y-3">
-                <button onclick="alert('Iniciando escaneo con IA... (Cámara lista)')" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-slate-950 font-semibold py-3.5 px-4 rounded-2xl shadow-lg shadow-emerald-950/50 flex items-center justify-center space-x-2 active:scale-[0.98] transition">
-                    <i class="fa-solid fa-camera"></i>
-                    <span>Escanear Ticket / Foto</span>
-                </button>
-            </div>
-
-            <!-- Listado de Despensa -->
-            <div class="space-y-3">
-                <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Mi Despensa</h2>
-                <div class="space-y-2">
-                    <div class="bg-slate-900 border border-slate-800 p-3 rounded-2xl flex justify-between items-center">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-xl">🥑</span>
-                            <div>
-                                <p class="text-sm font-medium text-slate-200">Aguacates / Paltas</p>
-                                <p class="text-xs text-amber-400">Vence: Mañana</p>
-                            </div>
-                        </div>
-                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Vista B2B / FoodService (Oculta inicialmente) -->
-        <div id="vista-b2b" class="space-y-6 hidden">
-            <div class="bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/30 p-4 rounded-2xl space-y-2">
-                <div class="flex items-center space-x-2 text-amber-400">
-                    <i class="fa-solid fa-store text-lg"></i>
-                    <h3 class="font-bold text-sm">NutriChef FoodService & Corporate</h3>
-                </div>
-                <p class="text-xs text-slate-300">Optimización de stock masivo para bufés, caterings y comedores corporativos.</p>
-            </div>
-
-            <div class="space-y-3">
-                <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Acciones Comerciales</h2>
-                <button onclick="alert('Generando sugerencia de Menú Ejecutivo con stock sobrante...')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-medium py-3 px-4 rounded-2xl flex items-center justify-center space-x-2 transition text-left">
-                    <i class="fa-solid fa-utensils text-amber-400"></i>
-                    <span>Sugerir "Plato del Día" por Vencimiento</span>
-                </button>
-                <button onclick="alert('Escaneando factura de proveedor al por mayor...')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-medium py-3 px-4 rounded-2xl flex items-center justify-center space-x-2 transition text-left">
-                    <i class="fa-solid fa-file-invoice-dollar text-emerald-400"></i>
-                    <span>Escanear Factura Mayorista</span>
-                </button>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Navegación Inferior -->
-    <footer class="bg-slate-900 border-t border-slate-800 p-3 sticky bottom-0 z-50">
-        <div class="max-w-md mx-auto flex justify-around text-xs text-slate-400">
-            <button class="flex flex-col items-center text-emerald-400 font-medium">
-                <i class="fa-solid fa-house text-base mb-1"></i>
-                <span>Despensa</span>
-            </button>
-            <button class="flex flex-col items-center hover:text-slate-200 transition">
-                <i class="fa-solid fa-utensils text-base mb-1"></i>
-                <span>Recetas</span>
-            </button>
-            <button class="flex flex-col items-center hover:text-slate-200 transition">
-                <i class="fa-solid fa-cart-shopping text-base mb-1"></i>
-                <span>Compras</span>
-            </button>
-        </div>
-    </footer>
-
-    <script>
-        function alternarModoB2B() {
-            const vistaHogar = document.getElementById('vista-hogar');
-            const vistaB2B = document.getElementById('vista-b2b');
-            const btnB2B = document.getElementById('b2b-btn');
-
-            if (vistaHogar.classList.contains('hidden')) {
-                vistaHogar.classList.remove('hidden');
-                vistaB2B.classList.add('hidden');
-                btnB2B.innerHTML = '<i class="fa-solid fa-briefcase mr-1"></i> Modo B2B';
-                btnB2B.className = 'text-xs bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded-full font-medium transition hover:bg-amber-500/20';
-                alert('Cambiado a Modo Hogar');
-            } else {
-                vistaHogar.classList.add('hidden');
-                vistaB2B.classList.remove('hidden');
-                btnB2B.innerHTML = '<i class="fa-solid fa-house mr-1"></i> Modo Hogar';
-                btnB2B.className = 'text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full font-medium transition hover:bg-emerald-500/20';
-                alert('Cambiado a Modo B2B (FoodService)');
-            }
+    <title>GesPyme - Panel de Control</title>
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --sidebar-bg: #202124;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
         }
-    </script>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); display: flex; height: 100vh; overflow: hidden; }
+        
+        /* Menú lateral */
+        sidebar { width: 260px; background-color: var(--sidebar-bg); color: white; display: flex; flex-direction: column; }
+        .sidebar-brand { padding: 1.5rem; font-size: 1.25rem; font-weight: bold; border-bottom: 1px solid #3c4043; display: flex; align-items: center; gap: 10px; }
+        .sidebar-menu { list-style: none; padding: 1rem 0; overflow-y: auto; flex: 1; }
+        .sidebar-menu li a { display: block; padding: 0.75rem 1.5rem; color: #bdc1c6; text-decoration: none; transition: 0.2s; }
+        .sidebar-menu li.active a, .sidebar-menu li a:hover { background-color: rgba(255,255,255,0.1); color: white; }
+
+        /* Contenido principal */
+        .main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
+        header { background: white; padding: 1rem 2rem; border-bottom: 1px solid #e0e0e0; display: flex; justify-content: space-between; align-items: center; }
+        .container { padding: 2rem; max-width: 1200px; width: 100%; margin: 0 auto; }
+        
+        /* Tarjetas de Acceso Rápido */
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .card { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.2s; text-decoration: none; color: inherit; display: block; }
+        .card:hover { transform: translateY(-3px); }
+        .card h3 { font-size: 1.1rem; color: var(--primary-color); margin-bottom: 0.5rem; }
+        .card p { font-size: 0.9rem; color: #666; }
+
+        /* Sección de tablas / listas */
+        .panel-section { background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .panel-section h2 { margin-bottom: 1rem; font-size: 1.2rem; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th, td { padding: 0.75rem; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+        th { background-color: #f1f3f4; color: #5f6368; }
+    </style>
+</head>
+<body>
+
+    <!-- Menú Lateral con Enlaces -->
+    <sidebar>
+        <div class="sidebar-brand">
+            <span>⚙️</span> GesPyme
+        </div>
+        <ul class="sidebar-menu">
+            <li class="active"><a href="index.html">Panel Principal</a></li>
+            <li><a href="clientes.html">Clientes</a></li>
+            <li><a href="facturas.html">Facturas</a></li>
+            <li><a href="cotizaciones.html">Cotizaciones</a></li>
+            <li><a href="articulos.html">Artículos / Servicios</a></li>
+            <li><a href="configuracion.html">Configuración</a></li>
+        </ul>
+    </sidebar>
+
+    <!-- Área Principal -->
+    <div class="main-content">
+        <header>
+            <h1>Panel de Control</h1>
+            <span>refri234gonza@gmail.com</span>
+        </header>
+
+        <div class="container">
+            <!-- Accesos Rápidos -->
+            <div class="cards-grid">
+                <a href="facturas.html" class="card">
+                    <h3>➕ Nueva Factura</h3>
+                    <p>Emite comprobantes para tus clientes rápidamente.</p>
+                </a>
+                <a href="clientes.html" class="card">
+                    <h3>👤 Nuevo Cliente</h3>
+                    <p>Registra empresas, comercios o monotributistas.</p>
+                </a>
+                <a href="articulos.html" class="card">
+                    <h3>📦 Nuevo Artículo</h3>
+                    <p>Carga repuestos, servicios técnicos o productos.</p>
+                </a>
+                <a href="cotizaciones.html" class="card">
+                    <h3>📊 Cotización</h3>
+                    <p>Prepara presupuestos detallados.</p>
+                </a>
+            </div>
+
+            <!-- Tabla de Actividad -->
+            <div class="panel-section">
+                <h2>Facturas Pendientes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Número</th>
+                            <th>Cliente</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5" style="text-align: center; color: #70757a; padding: 2rem;">
+                                No hay facturas pendientes registradas por el momento. ¡Crea la primera!
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
